@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">NYDOEHighSchoolDirectory</string>
+    <string name="school_name">School Name</string>
+    <string name="zip">Zip</string>
+    <string name="city">City</string>
+    <string name="oh_check_connection">Oh, Check Connection!</string>
+    <string name="no_info">No Info</string>
+    <string name="error">error</string>
+    <string name="no_data_found_for_this_school">No data found for this school.</string>
+    <string name="sat_reading_text">SAT Critical Reading Avg: %1$s</string>
+    <string name="sat_math_text">SAT Math Avg: %1$s</string>
+    <string name="sat_writing_text">SAT Writing Avg: %1$s</string>
+    <string name="sat_test_taker_text">Num of SAT Test Takers: %1$s</string>
+    <string name="no_data_is_available">No data is available!</string>
 </resources>
