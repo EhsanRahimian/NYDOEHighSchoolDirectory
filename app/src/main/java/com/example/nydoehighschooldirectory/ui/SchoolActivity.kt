@@ -28,6 +28,11 @@ class SchoolActivity : AppCompatActivity() {
         setContentView(view)
 
         setSupportActionBar(binding.toolbar)
+        val swipeRefresh = binding.contentLayout.swipeRefreshLayout
+        swipeRefresh.setOnRefreshListener {
+            viewModel.fetchSchoolList()
+            binding.loadingLayout.progressBar.visibility = View.GONE
+        }
 
         binding.contentLayout.recyclerView.apply {
             visibility = View.VISIBLE
@@ -52,6 +57,7 @@ class SchoolActivity : AppCompatActivity() {
                 when (state) {
                     is DataState.Success -> {
                         binding.contentLayout.recyclerView.visibility = View.VISIBLE
+                        binding.contentLayout.swipeRefreshLayout.isRefreshing = false
                         schoolAdapter.submitList(state.data)
                         updateUIState(
                             isLoading = false,
@@ -65,6 +71,7 @@ class SchoolActivity : AppCompatActivity() {
                         val errorMessage = ErrorMessageManager.getErrorMessage(state.exception)
                         binding.errorLayout.errorTextView.text = errorMessage
                         binding.contentLayout.recyclerView.visibility = View.GONE
+                        binding.contentLayout.swipeRefreshLayout.isRefreshing = false
                     }
 
                     DataState.Empty -> {

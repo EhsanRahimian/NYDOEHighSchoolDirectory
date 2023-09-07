@@ -39,6 +39,11 @@ class SchoolDetailsActivity : AppCompatActivity() {
         observeSchoolDetailsState()
     }
 
+    override fun onResume() {
+        super.onResume()
+        observeSchoolDetailsState()
+    }
+
     private fun observeSchoolDetailsState() {
         lifecycleScope.launch {
             viewModel.schoolDetailsStateFlow.collect { state ->
