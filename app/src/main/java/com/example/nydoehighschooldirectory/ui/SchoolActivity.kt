@@ -27,6 +27,7 @@ class SchoolActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        // Set up the swipe-to-refresh functionality
         setSupportActionBar(binding.toolbar)
         val swipeRefresh = binding.contentLayout.swipeRefreshLayout
         swipeRefresh.setOnRefreshListener {
@@ -42,6 +43,7 @@ class SchoolActivity : AppCompatActivity() {
                 override fun onItemClick(school: School) {
                     val selectedDbn = school.dbn
 
+                    // Set the selected dbn and trigger fetching school details
                     viewModel.setSelectedDbn(school.dbn)
 
                     val intent = Intent(this@SchoolActivity, SchoolDetailsActivity::class.java)
@@ -50,8 +52,10 @@ class SchoolActivity : AppCompatActivity() {
                 }
             })
         }
+        // Fetch the school list when the activity is created
         viewModel.fetchSchoolList()
 
+        // Observe the state of the school list data
         lifecycleScope.launch {
             viewModel.schoolListState.collect { state ->
                 when (state) {
@@ -89,10 +93,12 @@ class SchoolActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        // Refresh the school list when the activity resumes
         viewModel.fetchSchoolList()
     }
 
     private fun updateUIState(isLoading: Boolean, isError: Boolean, isEmpty: Boolean) {
+        // Update the UI based on the current state
         binding.loadingLayout.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.errorLayout.errorTextView.visibility = if (isError) View.VISIBLE else View.GONE
         binding.errorLayout.circleIv.visibility = if (isError) View.VISIBLE else View.GONE

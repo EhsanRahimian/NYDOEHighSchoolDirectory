@@ -13,6 +13,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
+    /**
+     * Provides a configured Retrofit instance for making network requests.
+     *
+     * @return A Retrofit instance.
+     */
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -21,6 +26,12 @@ object RetrofitModule {
             .build()
     }
 
+    /**
+     * Provides an implementation of the [SchoolService] interface using Retrofit.
+     *
+     * @param retrofit The Retrofit instance for creating the service.
+     * @return An instance of the [SchoolService] interface.
+     */
     @Provides
     fun provideSchoolService(retrofit: Retrofit): SchoolService {
         return retrofit.create(SchoolService::class.java)

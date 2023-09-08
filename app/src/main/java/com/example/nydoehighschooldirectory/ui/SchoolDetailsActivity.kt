@@ -30,6 +30,7 @@ class SchoolDetailsActivity : AppCompatActivity() {
 
         val selectedDbn = intent.getStringExtra("dbn")
 
+        // Fetch school details when the activity is created
         lifecycleScope.launch {
             selectedDbn?.let { dbn ->
                 // Trigger fetching of school details with the selected dbn

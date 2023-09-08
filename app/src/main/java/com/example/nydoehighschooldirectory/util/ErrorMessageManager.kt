@@ -10,4 +10,6 @@ object ErrorMessageManager {
             else -> exception?.message ?: "An unknown error occurred."
         }
     }
+    //I would have provided more specific error messages for various network issues.
+    // For now, a generic message is displayed for network-related errors.
 }

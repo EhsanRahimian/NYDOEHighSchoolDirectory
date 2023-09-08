@@ -22,12 +22,18 @@ class SchoolViewModel @Inject constructor(
     private val _selectedDbn = MutableStateFlow("")
     val selectedDbn: StateFlow<String> = _selectedDbn
 
+    /**
+     * Sets the selected dbn and triggers fetching of school details.
+     * @param dbn The dbn to select.
+     */
     fun setSelectedDbn(dbn: String) {
-        // Set the selected dbn here and trigger fetching of school details
         _selectedDbn.value = dbn
     }
 
-    // Function to fetch school list
+    /**
+     * Function to fetch the list of schools.
+     * It uses viewModelScope to launch a coroutine.
+     */
     fun fetchSchoolList() = viewModelScope.launch {
         _schoolListState.value = DataState.Loading
         try {
