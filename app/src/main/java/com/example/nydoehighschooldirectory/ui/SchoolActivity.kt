@@ -95,12 +95,6 @@ class SchoolActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        // Refresh the school list when the activity resumes
-        viewModel.fetchSchoolList()
-    }
-
     private fun updateUIState(isLoading: Boolean, isError: Boolean, isEmpty: Boolean) {
         // Update the UI based on the current state
         binding.loadingLayout.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
