@@ -6,6 +6,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nydoehighschooldirectory.R
 import com.example.nydoehighschooldirectory.databinding.ActivitySchoolBinding
 import com.example.nydoehighschooldirectory.model.School
@@ -38,6 +39,8 @@ class SchoolActivity : AppCompatActivity() {
         binding.contentLayout.recyclerView.apply {
             visibility = View.VISIBLE
             adapter = schoolAdapter
+            schoolAdapter.stateRestorationPolicy =
+                RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
             schoolAdapter.setOnItemClickListener(object : SchoolAdapter.OnItemClickListener {
                 override fun onItemClick(school: School) {
@@ -80,7 +83,8 @@ class SchoolActivity : AppCompatActivity() {
 
                     DataState.Empty -> {
                         updateUIState(isLoading = false, isError = false, isEmpty = true)
-                        binding.emptyLayout.emptyTextView.text = getString(R.string.no_data_is_available)
+                        binding.emptyLayout.emptyTextView.text =
+                            getString(R.string.no_data_is_available)
                     }
 
                     DataState.Loading -> {
