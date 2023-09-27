@@ -36,7 +36,7 @@ class SchoolAdapter : ListAdapter<School, SchoolAdapter.SchoolViewHolder>(School
         init {
             //itemView.setOnClickListener {
                 binding.root.setOnClickListener {
-                val position = adapterPosition
+                    val position = bindingAdapterPosition // adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val school = getItem(position)
                     listener?.onItemClick(school)
